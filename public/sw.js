@@ -18,3 +18,5 @@ self.addEventListener('notificationclick', event => {
         clients.openWindow(event.notification.data.url)
     );
 });
+
+console.log("New subscription: ", subscription);
