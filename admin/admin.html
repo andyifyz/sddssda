@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+</head>
+<body>
+    <h1>Send Notification</h1>
+    <form id="notification-form">
+        <input type="text" placeholder="Title" required id="title">
+        <input type="text" placeholder="Body" required id="body">
+        <input type="text" placeholder="URL" required id="url">
+        <button type="submit">Send</button>
+    </form>
+    <script>
+        document.getElementById('notification-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const title = document.getElementById('title').value;
+            const body = document.getElementById('body').value;
+            const url = document.getElementById('url').value;
+
+            await fetch('/send-notification', {
+                method: 'POST',
+                body: JSON.stringify({ title, body, url }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            alert('Notification sent!');
+        });
+    </script>
+</body>
+</html>
